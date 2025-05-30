@@ -1,0 +1,52 @@
+cooking_manager_task:
+  description: >
+    Based on the user's preference, determine whether the user wants a written recipe or a cooking video.
+    Delegate the task to either the Recipe Agent or the YouTube Video Agent accordingly.
+    Capture and return the sub-agent’s full response as your own output.
+    User_input: {user}
+    conversation_history: {history}
+  expected_output: >
+    Ensure that only assigned agent will do the task.
+    Respond only with the output from the delegated sub-agent (Recipe Agent or YouTube Video Agent).
+    Do not add any extra explanation or commentary.
+  agent: cooking_manager
+  
+recipe_task:
+  description: >
+    Based on the user's preference suggest a suitable recipe.
+  expected_output: >
+    A title and step-by-step recipe and a brief description.
+  agent: recipe_agent
+
+youtube_task:
+  description: >
+    Recommend relevant YouTube videos based on the user's interest or query.
+  expected_output: >
+    A list of 3-5 YouTube video titles, URLs, and a short description.
+  agent: youtube_agent
+
+support_manager_task:
+  description: >
+    Your are support Manager delegate task to sub-agents.
+    If user ask for ingredient assign to Ingredient Agent otherwise to Kitchen Emergency Expert.
+    Respond back to the user as given by the sub-agents.
+    User_input:{user}
+    conversation_history:{history}
+  expected_output: >
+    Ensure that only assigned agent will do the task.
+    Respond to the user.
+  agent: support_manager
+
+kitchen_emergency_task:
+  description: >
+    Help the user fix a mistake in the cooking process (e.g., too salty, too spicy, too watery, overcooked). Give practical and simple solutions based on the situation.
+  expected_output: >
+    A brief description of the issue and 1–3 actionable fixes with short explanations for each.
+  agent: kitchen_emergency_expert
+
+ingredient_task:
+  description: >
+    List all ingredients needed for the selected recipe including cooking time, difficulty level and offer common alternatives for hard-to-find items.
+  expected_output: >
+    A bullet list of ingredients with quantity and substitutions, formatted as markdown.
+  agent: ingredient_agent
