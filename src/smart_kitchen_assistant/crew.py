@@ -11,7 +11,6 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 load_dotenv()
 MODEL = os.getenv("MODEL")
 API_KEY = os.getenv("GOOGLE_API_KEY")
-EMBED_MODEL = os.getenv("EMBEDDING_MODEL")
 
 llm = LLM(
     model=MODEL,
